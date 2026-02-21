@@ -1,5 +1,10 @@
 """
 Calculator: filter applicable measures and compute cost/savings/payback.
+Formulas follow data/mock_data_combo.xlsx, sheet Calculator:
+- Cost: retrofits!E * B2 * E6  => typical_cost_eur_m2 * total_area_m2 * cost_factor (E6=0.14)
+- Subsidy: C14*0.6  => cost * SUBSIDY_RATE
+- Savings: B10*retrofits!H  => yearly_eur * (expected_savings_pct/100)
+- Payback: we use cost/savings_eur (full cost); sheet F14 uses D14/E14 (subsidy/savings).
 Cost rule: typical_cost_eur_m2 < 900 -> multiply by total_area_m2 * factor; else fixed.
 """
 
@@ -135,6 +140,8 @@ def compute_measures(
             pct = 0.0
         savings_eur = yearly_eur * pct if yearly_eur else 0.0
         payback = (cost / savings_eur) if savings_eur > 0 else None
+        cost_after_subsidy = cost * (1 - SUBSIDY_RATE)
+        payback_after_subsidy = (cost_after_subsidy / savings_eur) if savings_eur > 0 else None
         cat = (m.get("category") or "").strip()
         requires_whole = cat in WHOLE_BUILDING_CATEGORIES
 
@@ -143,11 +150,13 @@ def compute_measures(
             "measure_name": m.get("measure_name"),
             "category": cat,
             "estimated_cost": round(cost, 2),
+            "cost_after_subsidy_eur": round(cost_after_subsidy, 2),
             "subsidy_eur": round(subsidy_eur, 2),
             "subsidy_pct": SUBSIDY_RATE,
             "estimated_savings_pct": float(m.get("expected_savings_pct") or 0),
             "estimated_savings_eur_per_year": round(savings_eur, 2),
             "payback_years": round(payback, 1) if payback is not None else None,
+            "payback_years_after_subsidy": round(payback_after_subsidy, 1) if payback_after_subsidy is not None else None,
             "subsidy_info": "KfW/Bafa" if (m.get("kfw_eligible") or m.get("bafa_eligible")) else "",
             "requires_whole_building_landlord": requires_whole,
         })

@@ -23,18 +23,30 @@
 
 Условие применимости меры (например «если window_type = Single-pane — показывать замену окон») согласовано с условными формулами в таблице (напр. IF(B4="Single-pane", retrofits!B15) и с полем `prerequisites` в retrofit_measures.
 
-### Формулы расчёта (по листу Calculator)
+### Формулы расчёта (по листу Calculator) — актуальные ячейки из data/mock_data_combo.xlsx
 
-| Результат | Формула в таблице | Реализация в API |
-|-----------|-------------------|-------------------|
-| Площадь здания | VLOOKUP(building_id, buildings, col 10) | BuildingStore: total_area_m2 |
-| Число квартир | VLOOKUP(building_id, buildings, col 9) | BuildingStore: num_units |
-| Тип окон / крыша / утепление | VLOOKUP по колонкам 12–14, 17–19 | BuildingStore: window_type, roof_type, insulation_* |
-| Годовое потребление тепла | AVERAGE(energy_consumption за 12 мес.) | По energy_consumption или energy_consumption_kwh_m2 × total_area_m2 |
-| Стоимость меры, € | retrofits!E × total_area_m2 × коэффициент (E6=0.14) | typical_cost_eur_m2 × total_area_m2 × factor (конфиг) |
-| Субсидия, € | стоимость × 0.6 | 60% от стоимости (KfW/Bafa-ориентир) |
-| Экономия на отоплении, €/год | годовое_потребление_тепла × retrofits!H (доля экономии) | yearly_heat × (expected_savings_pct/100) и при необходимости × цена тепла |
-| Окупаемость, лет | стоимость_меры / (годовая_выгода_на_здание) | cost_eur / annual_benefit_eur |
+| Результат | Ячейка | Формула в таблице | Реализация в API |
+|-----------|--------|-------------------|-------------------|
+| Building ID | B1 | ввод | address_slug / building_id |
+| Площадь здания | B2 | `=VLOOKUP(B1,buildings!A2:Y9983,10,FALSE)` | BuildingStore: total_area_m2 |
+| Число квартир | B3 | `=VLOOKUP(B1,buildings!A2:Y9983,9,FALSE)` | BuildingStore: num_units |
+| Window | B4 | `=VLOOKUP(B1,buildings!A2:Y9983,14,FALSE)` | window_type |
+| Roof Type | B5 | `=VLOOKUP(B1,buildings!A2:Y9983,12,FALSE)` | roof_type |
+| Insulation | B6 | `=VLOOKUP(B1,buildings!A2:Y9983,18,FALSE)` | insulation_walls |
+| Facade | B7 | `=VLOOKUP(B1,buildings!A2:Y9983,13,FALSE)` | facade_material |
+| Insulation | B8 | `=VLOOKUP(B1,buildings!A2:Y9983,17,FALSE)` | insulation_roof |
+| Basement Insulation | B9 | `=VLOOKUP(B1,buildings!A2:Y9983,19,FALSE)` | insulation_basement |
+| Energy Costs (average) | B10 | массив/AVERAGE по энергозатратам за год | yearly_kwh × heat_price → yearly_eur |
+| Коэффициент стоимости | E6 | 0.14 (Window to floor sqm ratio) | cost_factor (конфиг) |
+| Субсидия, доля | D7/D8 | 0.6 | SUBSIDY_RATE |
+| **По каждой мере (пример: строка 14):** | | | |
+| Условие показа меры | B14 | `=IF(B4="Single-pane",retrofits!B15)` | _is_applicable (window_type, insulation_* и т.д.) |
+| Стоимость меры, € | C14 | `=retrofits!E15*B2*E6` | typical_cost_eur_m2 × total_area_m2 × factor |
+| Cost after subsidy (субсидия), € | D14 | `=C14*0.6` | cost × SUBSIDY_RATE → subsidy_eur |
+| Экономия, €/год | E14 | `=B10*retrofits!H15` | yearly_eur × (expected_savings_pct/100) |
+| Years for return | F14 | `=D14/E14` | в таблице: subsidy/savings; в API: payback = cost/savings_eur (классическая окупаемость) |
+
+Дополнительно в таблице (строки 16–21): avg monthly rent/unit (C17=`financials!L2*B2/B3`), savings/month/unit (D17), 8% increase (C19), tenant savings (D19), yearly extra income (C20), years for return по аренде (C21). При необходимости можно вынести в отдельный endpoint или конфиг.
 
 ### Конфиг/константы
 
