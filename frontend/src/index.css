@@ -1,0 +1,198 @@
+/* ViabCheck / Eco — gradient 142deg #FF5005 → white; Sohne-like typography */
+:root {
+  --brand-orange: #FF5005;
+  --bg-gradient: linear-gradient(142deg, var(--brand-orange) 0%, #fff 100%);
+  --text-on-gradient: #000;
+  --button-bg: #000;
+  --button-text: #fff;
+  --input-bg: rgba(255, 255, 255, 0.3);
+  --input-border: 1px solid #000;
+  --stepper-active-bg: #000;
+  --stepper-inactive-stroke: var(--brand-orange);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-on-gradient);
+}
+
+#root {
+  min-height: 100vh;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.app-logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.app-tagline {
+  flex: 1;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.app-menu {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.stepper-step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.stepper-step.active {
+  background: var(--stepper-active-bg);
+  color: var(--button-text);
+  border: 2px solid var(--stepper-active-bg);
+}
+
+.stepper-step.inactive {
+  background: transparent;
+  color: var(--stepper-inactive-stroke);
+  border: 2px solid var(--stepper-inactive-stroke);
+}
+
+.stepper-line {
+  width: 40px;
+  height: 2px;
+  background: var(--stepper-inactive-stroke);
+}
+
+/* Form */
+.step-content {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 175px;
+  cursor: pointer;
+  background: var(--button-bg);
+  color: var(--button-text);
+  margin-top: 0.5rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Step 3 measures */
+.measures-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.measure-card {
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.measure-card.whole-building {
+  border-left: 4px solid var(--brand-orange);
+}
+
+.measure-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.measure-card .meta {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.we-get {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0,0,0,0.06);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.error-msg {
+  color: #c00;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}

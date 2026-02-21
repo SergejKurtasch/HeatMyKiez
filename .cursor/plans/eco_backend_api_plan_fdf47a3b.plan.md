@@ -4,25 +4,25 @@ overview: "План реализации бэкенда и интеграции 
 todos:
   - id: store-csv
     content: CSV-форматы users/requests/recommendations и слой Store (интерфейсы + реализации, загрузка buildings/measures в память, address_slug)
-    status: pending
+    status: completed
   - id: api-buildings
     content: "FastAPI: GET /api/building/:address, search, streets, buildings?postal_code&street"
-    status: pending
+    status: completed
   - id: api-users
     content: POST /api/users, PATCH /api/users/:id, логика «соседи» в лог
-    status: pending
+    status: completed
   - id: calculator
     content: GET /api/building/:address/calculator — подбор мер, формулы из xlsx, конфиг
-    status: pending
+    status: completed
   - id: ai-recommendations
     content: POST /api/ai-recommendations — применимые меры, промпт 3 DIY + 3 капитальных, RecommendationStore
-    status: pending
+    status: completed
   - id: api-requests
     content: POST/GET /api/requests через RequestStore
-    status: pending
+    status: completed
   - id: frontend-mvp
     content: "Фронтенд по Figma: ViabCheck, визард 4 шагов, подключение к API, OpenAPI"
-    status: pending
+    status: completed
 isProject: false
 ---
 
