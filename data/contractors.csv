@@ -1,0 +1,21 @@
+contractor_id,company_name,specialization,district_served,years_in_business,num_employees,avg_rating,num_reviews,avg_project_cost_eur,capacity_projects_year,current_backlog_months,kfw_certified,bafa_certified,insurance_amount_eur,warranty_years,price_level,reliability_score,quality_score,communication_score
+CONT-001,Berliner Energiebau GmbH,Facade insulation,Friedrichshain|Kreuzberg|Mitte,18,12,4.3,47,85000.0,15,6.5,True,True,2000000.0,5,Medium,4.1,4.5,4.0
+CONT-002,Schmidt Wärmetechnik,Heating systems,Pankow|Lichtenberg|Marzahn,22,8,4.6,68,42000.0,25,8.0,True,True,1500000.0,5,Medium,4.5,4.7,4.4
+CONT-003,Fenster Plus Berlin,Windows,All districts,15,6,3.9,34,28000.0,40,4.5,True,True,1000000.0,3,Low,3.8,4.0,3.7
+CONT-004,Dämmtechnik Hauptstadt,Envelope general,Neukölln|Tempelhof|Kreuzberg,12,10,4.2,41,95000.0,12,9.0,True,True,2500000.0,5,High,4.0,4.4,4.1
+CONT-005,EcoHeat Solutions,Heat pumps,Charlottenburg|Spandau|Steglitz,8,14,4.7,89,52000.0,18,11.5,True,True,3000000.0,7,High,4.6,4.8,4.5
+CONT-006,Renovierung Express,General contractor,Mitte|Prenzlauer Berg|Wedding,25,20,4.1,112,125000.0,10,7.0,True,True,5000000.0,5,Medium,4.2,4.3,3.9
+CONT-007,Dachprofi Berlin,Roof insulation,All districts,19,7,4.4,56,38000.0,30,5.5,True,True,1200000.0,5,Medium,4.3,4.5,4.2
+CONT-008,Grüne Energie GmbH,Solar & renewables,Pankow|Weissensee|Prenzlauer,10,9,4.5,62,35000.0,22,6.0,False,True,1500000.0,10,Medium,4.4,4.6,4.3
+CONT-009,Altbau Sanierung Pro,Altbau specialist,Kreuzberg|Neukölln|Friedrichshain,28,16,4.8,134,145000.0,8,12.0,True,True,3500000.0,5,High,4.7,4.9,4.6
+CONT-010,Budget Dämmung,Envelope budget,Marzahn|Lichtenberg|Hellersdorf,5,4,3.5,22,55000.0,35,3.0,False,False,500000.0,2,Low,3.3,3.6,3.4
+CONT-011,Premium Fassaden,Facade specialist,Charlottenburg|Wilmersdorf|Zehlendorf,14,11,4.6,78,105000.0,14,10.0,True,True,2800000.0,7,High,4.5,4.7,4.4
+CONT-012,Heizung Modern,Heating upgrades,All districts,17,13,4.3,91,48000.0,28,7.5,True,True,2000000.0,5,Medium,4.2,4.4,4.1
+CONT-013,Wärmepumpe Experten,Heat pump specialist,Pankow|Reinickendorf|Spandau,6,8,4.7,45,58000.0,16,9.5,True,True,2500000.0,8,High,4.6,4.8,4.5
+CONT-014,Kellerdecke Plus,Basement insulation,All districts,11,5,4.0,38,22000.0,50,4.0,True,True,800000.0,5,Low,3.9,4.1,3.8
+CONT-015,Gesamtsanierung Berlin,Full renovation,Mitte|Friedrichshain|Prenzlauer,20,25,4.4,156,285000.0,6,14.0,True,True,10000000.0,5,High,4.3,4.5,4.2
+CONT-016,Schnell Fenster,Window quick install,Neukölln|Tempelhof|Schöneberg,9,6,3.8,29,32000.0,45,3.5,True,True,1000000.0,3,Low,3.7,3.9,3.6
+CONT-017,Lüftung Komfort,Ventilation systems,Charlottenburg|Spandau|Steglitz,7,7,4.5,41,38000.0,20,6.5,True,True,1500000.0,7,Medium,4.4,4.6,4.3
+CONT-018,Photovoltaik Profis,Solar PV,All districts,12,10,4.6,82,28000.0,35,5.0,False,False,2000000.0,12,Medium,4.5,4.7,4.4
+CONT-019,Plattenbauten Service,Plattenbau specialist,Marzahn|Lichtenberg|Hohenschönhausen,23,15,4.2,98,165000.0,10,8.5,True,True,4000000.0,5,Medium,4.1,4.3,4.0
+CONT-020,Smart Home Energy,Building automation,Mitte|Prenzlauer Berg|Friedrichshain,8,6,4.4,37,45000.0,18,7.0,True,False,1200000.0,5,High,4.3,4.5,4.2
