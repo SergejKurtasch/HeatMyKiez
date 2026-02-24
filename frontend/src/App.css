@@ -1,0 +1,4 @@
+/* App-level overrides if needed */
+.wizard-step a {
+  color: var(--color-accent);
+}

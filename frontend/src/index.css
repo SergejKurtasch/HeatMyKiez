@@ -1,0 +1,40 @@
+/* Figma tokens from plan: fill_DAWI4J #FFFFFF, fill_FZ615R #000000, fill_PWAC0M #FF5005, gradient fill_MR6FNE */
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-accent: #FF5005;
+  --color-yellow: #FFDE08;
+  --gradient-hero: linear-gradient(151deg, rgba(255, 80, 5, 1) 1%, rgba(255, 255, 255, 1) 75%);
+  --font-body: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Sohne Breit', var(--font-body);
+  --radius-button: 175px;
+  --input-bg: rgba(255, 255, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 27px;
+  line-height: 1.3;
+  color: var(--color-black);
+  background: var(--color-white);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
