@@ -151,14 +151,14 @@
 
 .btn-ghost {
   width: 280px;
-  height: 64px;
+  height: 56px;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
 }
 
 .btn-cta-large {
   width: 320px;
-  height: 64px;
+  height: 56px;
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -167,10 +167,16 @@
 
 .wizard-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 16px;
   margin-top: 32px;
+}
+
+.wizard-actions .btn-cta-large {
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .step1-form .wizard-actions {
@@ -631,14 +637,14 @@
 }
 
 .contractor-badge {
-  margin: -3px 0 0;
+  margin: 4px 0 0;
   font-size: 16px;
   line-height: 2.18;
   color: var(--color-accent);
 }
 
 .contractor-stars {
-  margin-top: -4px;
+  margin-top: 14px;
   display: flex;
   gap: 4px;
   color: #ffde08;
@@ -647,7 +653,7 @@
 }
 
 .btn-quote {
-  margin-top: -2px;
+  margin-top: 14px;
   width: 122px;
   height: 36px;
   font-size: 12px;
@@ -696,10 +702,16 @@
   }
 
   .step1-address-actions .btn-primary,
-  .btn-cta-large,
   .btn-ghost {
     width: 100%;
-    height: 72px;
+    height: 56px;
+  }
+
+  .wizard-actions .btn-cta-large {
+    width: 320px;
+    max-width: 100%;
+    height: 56px;
+    flex-shrink: 1;
   }
 
   .step1-form-copy {
