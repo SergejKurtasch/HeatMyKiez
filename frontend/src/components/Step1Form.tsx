@@ -53,6 +53,13 @@ export function Step1Form({ building, overrides, onChange, onNext }: Step1FormPr
         <p className="step-desc">To understand your situation, we need some data from you.</p>
         <p className="step-desc-secondary">Now, give some basic details about the building and costs</p>
         <p className="step-desc-secondary">Then, let's get real and dive into heating related details</p>
+        <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
+          <span className="step-connector" aria-hidden="true" />
+          <span className="step">1</span>
+          <span className="step active">2</span>
+          <span className="step">3</span>
+          <span className="step">4</span>
+        </div>
       </div>
 
       <div className="step1-form-layout">
@@ -199,14 +206,6 @@ export function Step1Form({ building, overrides, onChange, onNext }: Step1FormPr
           </div>
         </div>
 
-      </div>
-
-      <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
-        <span className="step-connector" aria-hidden="true" />
-        <span className="step">1</span>
-        <span className="step active">2</span>
-        <span className="step">3</span>
-        <span className="step">4</span>
       </div>
 
       <button className="btn btn-primary btn-cta-large" onClick={onNext}>Next</button>

@@ -65,6 +65,13 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
         <div className="step1-address-copy">
           <p className="step-desc">To understand your situation, we need some data from you.</p>
           <p className="step-desc-secondary">First, let us know where do you live.</p>
+          <div className="stepper" role="progressbar" aria-valuenow={1} aria-valuemin={1} aria-valuemax={4}>
+            <span className="step-connector" aria-hidden="true" />
+            <span className="step active">1</span>
+            <span className="step">2</span>
+            <span className="step">3</span>
+            <span className="step">4</span>
+          </div>
         </div>
 
         <div className="form form-address">
@@ -124,14 +131,6 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
       </div>
 
       {error && <p className="error-msg">{error}</p>}
-
-      <div className="stepper" role="progressbar" aria-valuenow={1} aria-valuemin={1} aria-valuemax={4}>
-        <span className="step-connector" aria-hidden="true" />
-        <span className="step active">1</span>
-        <span className="step">2</span>
-        <span className="step">3</span>
-        <span className="step">4</span>
-      </div>
     </div>
   );
 }

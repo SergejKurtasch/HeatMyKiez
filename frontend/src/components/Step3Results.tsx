@@ -28,6 +28,13 @@ export function Step3Results({ result, building, onFindContractor }: Step3Result
       <p className="step-desc">Your energy savings with these retrofits</p>
       <p className="step-desc-secondary">We help you finance the retrofitting – so you are climate-safe for the future and your tenants stay warm.</p>
       <p className="step-desc-secondary">By slight rent increase, your investment has a return and the tenants pay less Warmmiete as they pay less energy costs.</p>
+      <div className="stepper" role="progressbar" aria-valuenow={3} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
+        <span className="step">1</span>
+        <span className="step">2</span>
+        <span className="step active">3</span>
+        <span className="step">4</span>
+      </div>
 
       <div className="wizard-two-col">
         <div className="wizard-main">
@@ -67,14 +74,6 @@ export function Step3Results({ result, building, onFindContractor }: Step3Result
             </div>
           </aside>
         )}
-      </div>
-
-      <div className="stepper" role="progressbar" aria-valuenow={3} aria-valuemin={1} aria-valuemax={4}>
-        <span className="step-connector" aria-hidden="true" />
-        <span className="step">1</span>
-        <span className="step">2</span>
-        <span className="step active">3</span>
-        <span className="step">4</span>
       </div>
 
       <button className="btn btn-primary btn-cta-large" onClick={onFindContractor}>Find Contractor</button>

@@ -19,6 +19,13 @@ export function Step4Contractors({ contractors, loading }: Step4ContractorsProps
         </button>
       </header>
       <h2 className="marketplace-title">Your contractor Marketplace</h2>
+      <div className="stepper" role="progressbar" aria-valuenow={4} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
+        <span className="step">1</span>
+        <span className="step">2</span>
+        <span className="step">3</span>
+        <span className="step active">4</span>
+      </div>
 
       {loading ? (
         <p className="step-desc-secondary">Loading contractors…</p>
@@ -46,13 +53,6 @@ export function Step4Contractors({ contractors, loading }: Step4ContractorsProps
         </div>
       )}
 
-      <div className="stepper" role="progressbar" aria-valuenow={4} aria-valuemin={1} aria-valuemax={4}>
-        <span className="step-connector" aria-hidden="true" />
-        <span className="step">1</span>
-        <span className="step">2</span>
-        <span className="step">3</span>
-        <span className="step active">4</span>
-      </div>
     </div>
   );
 }

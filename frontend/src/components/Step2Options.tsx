@@ -42,6 +42,13 @@ export function Step2Options({
       </header>
       <p className="step-desc">Now, let's summarize the data</p>
       <p className="step-desc-secondary">And pick the retrofits</p>
+      <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
+        <span className="step">1</span>
+        <span className="step active">2</span>
+        <span className="step">3</span>
+        <span className="step">4</span>
+      </div>
 
       <div className="wizard-two-col">
         <div className="wizard-main">
@@ -71,14 +78,19 @@ export function Step2Options({
               <div
                 key={opt.subType}
                 className={`option-card ${selectedOption?.subType === opt.subType ? "selected" : ""}`}
-                onClick={() => onSelect(opt)}
               >
-                <div className="option-marker" aria-hidden="true" />
+                <label className="option-checkbox-wrap">
+                  <input
+                    type="checkbox"
+                    checked={selectedOption?.subType === opt.subType}
+                    onChange={() => onSelect(opt)}
+                  />
+                  <span className="option-marker" aria-hidden="true" />
+                </label>
                 <h3>{opt.label}</h3>
                 <p><strong>Energy Savings:</strong> {opt.savingsPct}%</p>
                 <p><strong>Baseline Cost (Euros):</strong> {opt.RetrofitCostTotal.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
                 <p><strong>Cost with applicable subsidies:</strong> {opt.RetrofitCostTotalAfterSubsidy.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
-                <span className="option-arrow" aria-hidden="true">→</span>
               </div>
             ))}
           </div>
@@ -106,13 +118,6 @@ export function Step2Options({
         </aside>
       </div>
 
-      <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
-        <span className="step-connector" aria-hidden="true" />
-        <span className="step">1</span>
-        <span className="step active">2</span>
-        <span className="step">3</span>
-        <span className="step">4</span>
-      </div>
     </div>
   );
 }
