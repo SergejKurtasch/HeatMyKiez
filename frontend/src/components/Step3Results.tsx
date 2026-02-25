@@ -15,10 +15,15 @@ export function Step3Results({ result, building, onFindContractor }: Step3Result
     : "—";
 
   return (
-    <div className="wizard-step">
+    <div className="wizard-step step3-results">
       <header className="wizard-header">
         <h1 className="logo">HeatMyKiez</h1>
         <p className="header-desc">Figure out how to finance insulating your building without losing money.</p>
+        <button type="button" className="menu-icon" aria-label="Open menu">
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
       <p className="step-desc">Your energy savings with these retrofits</p>
       <p className="step-desc-secondary">We help you finance the retrofitting – so you are climate-safe for the future and your tenants stay warm.</p>
@@ -26,8 +31,10 @@ export function Step3Results({ result, building, onFindContractor }: Step3Result
 
       <div className="wizard-two-col">
         <div className="wizard-main">
-      <p className="break-even-big">{breakEvenText}</p>
-      <p className="step-desc">Years until Break Even</p>
+      <div className="break-even-row">
+        <p className="break-even-big">{breakEvenText}</p>
+        <p className="step-desc break-even-label">Years until Break Even</p>
+      </div>
 
       <dl className="results-grid">
         <dt>Type of Retrofit</dt>

@@ -8,27 +8,39 @@ interface Step4ContractorsProps {
 
 export function Step4Contractors({ contractors, loading }: Step4ContractorsProps) {
   return (
-    <div className="wizard-step">
+    <div className="wizard-step step4-contractors">
       <header className="wizard-header">
         <h1 className="logo">HeatMyKiez</h1>
         <p className="header-desc">Figure out how to finance insulating your building without losing money.</p>
+        <button type="button" className="menu-icon" aria-label="Open menu">
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
-      <h2 className="step-desc">Your contractor Marketplace</h2>
+      <h2 className="marketplace-title">Your contractor Marketplace</h2>
 
       {loading ? (
         <p className="step-desc-secondary">Loading contractors…</p>
       ) : contractors.length === 0 ? (
         <p className="step-desc-secondary">No contractors found for window retrofit.</p>
       ) : (
-        <div className="card-group">
+        <div className="contractor-grid">
           {contractors.map((c) => (
             <div key={String(c.contractor_id || c.company_name)} className="contractor-card">
               <h3>{c.company_name ?? "—"}</h3>
-              <p>Vetted Contractor</p>
-              <p><strong>Specialization:</strong> {c.specialization ?? "—"}</p>
-              <p><strong>District(s):</strong> {c.district_served ?? "—"}</p>
-              <p><strong>Rating:</strong> {c.avg_rating ?? "—"} ({c.num_reviews ?? 0} reviews)</p>
-              <button className="btn btn-primary" style={{ marginTop: 12 }}>Request Quote</button>
+              <p className="contractor-subtitle">Vetted Contractor</p>
+              <p className="contractor-badge">
+                {c.specialization ? `${c.specialization} Available` : "Available Immediately"}
+              </p>
+              <div className="contractor-stars" aria-label="contractor rating">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+              </div>
+              <button className="btn btn-primary btn-quote">Request Quote</button>
             </div>
           ))}
         </div>

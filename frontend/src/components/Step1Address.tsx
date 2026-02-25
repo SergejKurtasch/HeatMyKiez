@@ -51,53 +51,75 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
   const canAdd = postcode && address && !loading;
 
   return (
-    <div className="wizard-step">
+    <div className="wizard-step step1-address">
       <header className="wizard-header">
         <h1 className="logo">HeatMyKiez</h1>
         <p className="header-desc">Figure out how to finance insulating your building without losing money.</p>
+        <button type="button" className="menu-icon" aria-label="Open menu">
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
-      <p className="step-desc">To understand your situation, we need some data from you.</p>
-      <p className="step-desc-secondary">First, let us know where do you live.</p>
+      <div className="step1-address-layout">
+        <div className="step1-address-copy">
+          <p className="step-desc">To understand your situation, we need some data from you.</p>
+          <p className="step-desc-secondary">First, let us know where do you live.</p>
+        </div>
 
-      <div className="form form-address">
-        <div className="field">
-          <label>Street</label>
-          <select
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
-            disabled={!postcode || streetsLoading}
+        <div className="form form-address">
+          <div className="field field-street">
+            <label>Street</label>
+            <select
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              disabled={!postcode || streetsLoading}
+            >
+              <option value="">Select street</option>
+              {streets.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
+          <div className="field field-postcode">
+            <label>Postcode</label>
+            <input
+              type="text"
+              value={postcode}
+              onChange={(e) => setPostcode(e.target.value)}
+              placeholder="e.g. 13593"
+            />
+          </div>
+          <div className="field field-city">
+            <label>City</label>
+            <input type="text" value="Berlin" readOnly className="autofill" />
+          </div>
+          <div className="field field-number">
+            <label>Number</label>
+            <select
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              disabled={!street || numbersLoading}
+            >
+              <option value="">Select number</option>
+              {numbers.map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="step1-address-actions">
+          <button type="button" className="btn btn-ghost" disabled>
+            Next
+          </button>
+          <button
+            className="btn btn-primary"
+            disabled={!canAdd}
+            onClick={() => onAdd(postcode, address)}
           >
-            <option value="">Select street</option>
-            {streets.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label>Postcode</label>
-          <input
-            type="text"
-            value={postcode}
-            onChange={(e) => setPostcode(e.target.value)}
-            placeholder="e.g. 13593"
-          />
-        </div>
-        <div className="field">
-          <label>City</label>
-          <input type="text" value="Berlin" readOnly className="autofill" />
-        </div>
-        <div className="field">
-          <label>Number</label>
-          <select
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            disabled={!street || numbersLoading}
-          >
-            <option value="">Select number</option>
-            {numbers.map((n) => (
-              <option key={n} value={n}>{n}</option>
-            ))}
-          </select>
+            {loading ? "Loading…" : "Add"}
+          </button>
         </div>
       </div>
 
@@ -110,14 +132,6 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
         <span className="step">3</span>
         <span className="step">4</span>
       </div>
-
-      <button
-        className="btn btn-primary"
-        disabled={!canAdd}
-        onClick={() => onAdd(postcode, address)}
-      >
-        {loading ? "Loading…" : "Add"}
-      </button>
     </div>
   );
 }

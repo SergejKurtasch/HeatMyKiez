@@ -30,10 +30,15 @@ export function Step2Options({
   const isTriple = /triple/i.test(windowType);
 
   return (
-    <div className="wizard-step">
+    <div className="wizard-step step2-options">
       <header className="wizard-header">
         <h1 className="logo">HeatMyKiez</h1>
         <p className="header-desc">Figure out how to finance insulating your building without losing money.</p>
+        <button type="button" className="menu-icon" aria-label="Open menu">
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
       <p className="step-desc">Now, let's summarize the data</p>
       <p className="step-desc-secondary">And pick the retrofits</p>
@@ -58,25 +63,29 @@ export function Step2Options({
       </div>
 
       {isTriple ? (
-        <p className="step-desc">Unfortunately there is no improvement opportunity for windows — no additional savings.</p>
+        <p className="step-desc no-opportunity">Unfortunately there is no improvement opportunity for windows — no additional savings.</p>
       ) : (
         <>
-          <div className="card-group">
+          <div className="card-group retrofit-cards">
             {optionCards.map((opt) => (
               <div
                 key={opt.subType}
                 className={`option-card ${selectedOption?.subType === opt.subType ? "selected" : ""}`}
                 onClick={() => onSelect(opt)}
               >
+                <div className="option-marker" aria-hidden="true" />
                 <h3>{opt.label}</h3>
                 <p><strong>Energy Savings:</strong> {opt.savingsPct}%</p>
                 <p><strong>Baseline Cost (Euros):</strong> {opt.RetrofitCostTotal.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
                 <p><strong>Cost with applicable subsidies:</strong> {opt.RetrofitCostTotalAfterSubsidy.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
+                <span className="option-arrow" aria-hidden="true">→</span>
               </div>
             ))}
           </div>
-          <p className="step-desc">*Berlin has an amazing subsidies program where you can finance up to 35% of your investment.</p>
-          <p className="step-desc-secondary"><a href="#" className="subsidy-link">Learn more here</a></p>
+          <div className="subsidy-block">
+            <p className="step-desc">*Berlin has an amazing subsidies program where you can finance up to 35% of your investment.</p>
+            <p className="step-desc-secondary"><a href="#" className="subsidy-link">Learn more here</a></p>
+          </div>
           <button
             className="btn btn-primary btn-cta-large"
             disabled={!selectedOption || loading}
