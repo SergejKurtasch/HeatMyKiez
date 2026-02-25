@@ -28,9 +28,10 @@ interface Step1FormProps {
   overrides: Record<string, unknown>;
   onChange: (overrides: Record<string, unknown>) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-export function Step1Form({ building, overrides, onChange, onNext }: Step1FormProps) {
+export function Step1Form({ building, overrides, onChange, onNext, onBack }: Step1FormProps) {
   const val = (key: string): string | number | undefined => {
     const v = overrides[key] ?? building[key];
     if (v === undefined || v === null) return undefined;
@@ -208,7 +209,10 @@ export function Step1Form({ building, overrides, onChange, onNext }: Step1FormPr
 
       </div>
 
-      <button className="btn btn-primary btn-cta-large" onClick={onNext}>Next</button>
+      <div className="wizard-actions">
+        <button type="button" className="btn btn-back" onClick={onBack}>Back</button>
+        <button className="btn btn-primary btn-cta-large" onClick={onNext}>Next</button>
+      </div>
     </div>
   );
 }

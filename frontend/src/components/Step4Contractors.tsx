@@ -4,9 +4,10 @@ import "./WizardLayout.css";
 interface Step4ContractorsProps {
   contractors: Contractor[];
   loading?: boolean;
+  onBack: () => void;
 }
 
-export function Step4Contractors({ contractors, loading }: Step4ContractorsProps) {
+export function Step4Contractors({ contractors, loading, onBack }: Step4ContractorsProps) {
   return (
     <div className="wizard-step step4-contractors">
       <header className="wizard-header">
@@ -53,6 +54,9 @@ export function Step4Contractors({ contractors, loading }: Step4ContractorsProps
         </div>
       )}
 
+      <div className="wizard-actions">
+        <button type="button" className="btn btn-back" onClick={onBack}>Back</button>
+      </div>
     </div>
   );
 }

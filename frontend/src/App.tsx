@@ -145,6 +145,7 @@ function App() {
         overrides={formOverrides}
         onChange={setFormOverrides}
         onNext={() => setStep(2)}
+        onBack={() => setBuilding(null)}
       />
     );
   }
@@ -157,6 +158,7 @@ function App() {
         selectedOption={selectedOption}
         onSelect={setSelectedOption}
         onCalculateBreakEven={handleCalculateBreakEven}
+        onBack={() => setStep(1)}
         loading={loading}
       />
     );
@@ -168,6 +170,7 @@ function App() {
         result={calculatorResult}
         building={building ?? undefined}
         onFindContractor={handleFindContractor}
+        onBack={() => setStep(2)}
       />
     );
   }
@@ -177,6 +180,7 @@ function App() {
       <Step4Contractors
         contractors={contractors}
         loading={contractorsLoading}
+        onBack={() => setStep(3)}
       />
     );
   }

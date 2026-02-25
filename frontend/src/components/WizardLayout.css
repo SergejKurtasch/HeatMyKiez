@@ -165,6 +165,32 @@
   justify-content: center;
 }
 
+.wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.step1-form .wizard-actions {
+  margin-top: 56px;
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
+  padding: 0 28px;
+  height: 56px;
+  min-width: 120px;
+  font-size: var(--font-size-step-desc);
+}
+
+.btn-back:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
 .error-msg {
   margin: 24px 0 0;
   font-size: 24px;

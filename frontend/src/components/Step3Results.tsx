@@ -5,9 +5,10 @@ interface Step3ResultsProps {
   result: CalculatorResult;
   building?: Building | null;
   onFindContractor: () => void;
+  onBack: () => void;
 }
 
-export function Step3Results({ result, building, onFindContractor }: Step3ResultsProps) {
+export function Step3Results({ result, building, onFindContractor, onBack }: Step3ResultsProps) {
   const years = result.years_until_break_even ?? Math.floor(result.YearsUntilBreakeventRentIncrease);
   const months = result.months_until_break_even ?? Math.round((result.YearsUntilBreakeventRentIncrease - years) * 12);
   const breakEvenText = years > 0 || months > 0
@@ -76,7 +77,10 @@ export function Step3Results({ result, building, onFindContractor }: Step3Result
         )}
       </div>
 
-      <button className="btn btn-primary btn-cta-large" onClick={onFindContractor}>Find Contractor</button>
+      <div className="wizard-actions">
+        <button type="button" className="btn btn-back" onClick={onBack}>Back</button>
+        <button className="btn btn-primary btn-cta-large" onClick={onFindContractor}>Find Contractor</button>
+      </div>
     </div>
   );
 }

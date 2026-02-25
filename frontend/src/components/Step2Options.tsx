@@ -15,6 +15,7 @@ interface Step2OptionsProps {
   selectedOption: OptionCard | null;
   onSelect: (opt: OptionCard) => void;
   onCalculateBreakEven: () => void;
+  onBack: () => void;
   loading?: boolean;
 }
 
@@ -24,6 +25,7 @@ export function Step2Options({
   selectedOption,
   onSelect,
   onCalculateBreakEven,
+  onBack,
   loading,
 }: Step2OptionsProps) {
   const windowType = (building.window_type || building.WindowType || "").toString();
@@ -70,7 +72,12 @@ export function Step2Options({
       </div>
 
       {isTriple ? (
-        <p className="step-desc no-opportunity">Unfortunately there is no improvement opportunity for windows — no additional savings.</p>
+        <>
+          <p className="step-desc no-opportunity">Unfortunately there is no improvement opportunity for windows — no additional savings.</p>
+          <div className="wizard-actions">
+            <button type="button" className="btn btn-back" onClick={onBack}>Back</button>
+          </div>
+        </>
       ) : (
         <>
           <div className="card-group retrofit-cards">
@@ -98,13 +105,16 @@ export function Step2Options({
             <p className="step-desc">*Berlin has an amazing subsidies program where you can finance up to 35% of your investment.</p>
             <p className="step-desc-secondary"><a href="#" className="subsidy-link">Learn more here</a></p>
           </div>
-          <button
-            className="btn btn-primary btn-cta-large"
-            disabled={!selectedOption || loading}
-            onClick={onCalculateBreakEven}
-          >
-            {loading ? "Calculating…" : "Calculate Break Even"}
-          </button>
+          <div className="wizard-actions">
+            <button type="button" className="btn btn-back" onClick={onBack}>Back</button>
+            <button
+              className="btn btn-primary btn-cta-large"
+              disabled={!selectedOption || loading}
+              onClick={onCalculateBreakEven}
+            >
+              {loading ? "Calculating…" : "Calculate Break Even"}
+            </button>
+          </div>
         </>
       )}
         </div>
