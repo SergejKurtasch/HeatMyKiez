@@ -448,6 +448,152 @@
 .results-grid dd {
   margin: 0;
   font-size: var(--font-size-body);
+  text-align: left;
+}
+
+/* Step3: white content block (matches screenshot layout) */
+.step3-results .stepper {
+  margin-top: 28px;
+  margin-bottom: 24px;
+}
+
+.step3-results .step3-content {
+  background: transparent;
+  padding: 28px 32px 48px;
+  margin: 0;
+}
+
+.step3-results .step3-title {
+  margin: 0 0 20px;
+  font-size: 20px;
+  line-height: 1.22;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.step3-block {
+  margin: 0;
+}
+
+.step3-block + .step3-divider {
+  margin-top: 0;
+}
+
+.step3-divider {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 28px 0;
+}
+
+.step3-divider + .step3-text,
+.step3-divider + .step3-block {
+  margin-top: 0;
+}
+
+.step3-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  align-items: start;
+}
+
+.step3-col {
+  min-width: 0;
+}
+
+/* Label above value, two lines, left-aligned */
+.step3-results .step3-dl,
+.step3-dl {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+
+.step3-results .step3-dl dt,
+.step3-dl dt {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  margin: 0;
+  margin-top: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.step3-results .step3-dl dt:first-child,
+.step3-dl dt:first-child {
+  margin-top: 0;
+}
+
+.step3-results .step3-dl dd,
+.step3-dl dd {
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: left !important;
+  line-height: 1.4;
+}
+
+.step3-results .step3-dl dt + dd,
+.step3-dl dt + dd {
+  margin-top: 4px;
+}
+
+.step3-col-address .step3-dl {
+  width: 100%;
+}
+
+.step3-results .step3-col-address .step3-dl dt,
+.step3-results .step3-col-address .step3-dl dd {
+  text-align: left !important;
+}
+
+.step3-text {
+  margin: 0;
+}
+
+.step3-text p {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  line-height: var(--line-height-body);
+  color: var(--color-black);
+}
+
+.step3-text p:last-child {
+  margin-bottom: 0;
+}
+
+.step3-block-break-even {
+  margin-top: 0;
+}
+
+.step3-break-even-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.step3-break-even-label {
+  font-size: 1.575rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-black);
+}
+
+.step3-break-even-value {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--color-black);
+}
+
+.step3-results .step3-content .wizard-actions {
+  margin-top: 40px;
 }
 
 .marketplace-title {
@@ -618,5 +764,15 @@
   .stepper {
     width: 100%;
     max-width: 476px;
+  }
+
+  .step3-results .step3-content {
+    padding: 20px 24px 40px;
+  }
+
+  .step3-two-col {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 20px;
   }
 }
