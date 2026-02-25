@@ -13,26 +13,29 @@ export function Step4Contractors({ contractors, loading }: Step4ContractorsProps
         <h1 className="logo">HeatMyKiez</h1>
         <p className="header-desc">Figure out how to finance insulating your building without losing money.</p>
       </header>
-      <h2 className="break-even-big">Your contractor Marketplace</h2>
+      <h2 className="step-desc">Your contractor Marketplace</h2>
 
       {loading ? (
-        <p>Loading contractors…</p>
+        <p className="step-desc-secondary">Loading contractors…</p>
       ) : contractors.length === 0 ? (
-        <p>No contractors found for window retrofit.</p>
+        <p className="step-desc-secondary">No contractors found for window retrofit.</p>
       ) : (
-        contractors.map((c) => (
-          <div key={String(c.contractor_id || c.company_name)} className="contractor-card">
-            <h3>{c.company_name ?? "—"}</h3>
-            <p>Vetted Contractor</p>
-            <p><strong>Specialization:</strong> {c.specialization ?? "—"}</p>
-            <p><strong>District(s):</strong> {c.district_served ?? "—"}</p>
-            <p><strong>Rating:</strong> {c.avg_rating ?? "—"} ({c.num_reviews ?? 0} reviews)</p>
-            <button className="btn btn-accent" style={{ marginTop: 12 }}>Request Quote</button>
-          </div>
-        ))
+        <div className="card-group">
+          {contractors.map((c) => (
+            <div key={String(c.contractor_id || c.company_name)} className="contractor-card">
+              <h3>{c.company_name ?? "—"}</h3>
+              <p>Vetted Contractor</p>
+              <p><strong>Specialization:</strong> {c.specialization ?? "—"}</p>
+              <p><strong>District(s):</strong> {c.district_served ?? "—"}</p>
+              <p><strong>Rating:</strong> {c.avg_rating ?? "—"} ({c.num_reviews ?? 0} reviews)</p>
+              <button className="btn btn-primary" style={{ marginTop: 12 }}>Request Quote</button>
+            </div>
+          ))}
+        </div>
       )}
 
-      <div className="stepper">
+      <div className="stepper" role="progressbar" aria-valuenow={4} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
         <span className="step">1</span>
         <span className="step">2</span>
         <span className="step">3</span>

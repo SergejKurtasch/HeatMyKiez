@@ -2,6 +2,7 @@
 HeatMyKiez API: building retrofit payback calculator.
 All code and API in English.
 """
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -9,6 +10,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.api import addresses, buildings, calculator, contractors
 from backend.services.excel_loader import load_excel_data
+
+
+def _cors_origins() -> list[str]:
+    """Allow localhost in dev; in production use ALLOWED_ORIGINS (comma-separated)."""
+    default = ["http://localhost:5173", "http://127.0.0.1:5173"]
+    env = os.environ.get("ALLOWED_ORIGINS", "").strip()
+    if not env:
+        return default
+    return [o.strip() for o in env.split(",") if o.strip()]
 
 
 @asynccontextmanager
@@ -26,7 +36,7 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

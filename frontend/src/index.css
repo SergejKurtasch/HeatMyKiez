@@ -1,14 +1,20 @@
-/* Figma tokens from plan: fill_DAWI4J #FFFFFF, fill_FZ615R #000000, fill_PWAC0M #FF5005, gradient fill_MR6FNE */
+/* Figma design tokens: fill_0186AI #FFFFFF, fill_30I9FP #000000, fill_EDQILT #FF5005 */
 :root {
   --color-white: #FFFFFF;
   --color-black: #000000;
   --color-accent: #FF5005;
-  --color-yellow: #FFDE08;
   --gradient-hero: linear-gradient(151deg, rgba(255, 80, 5, 1) 1%, rgba(255, 255, 255, 1) 75%);
-  --font-body: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Sohne Breit', var(--font-body);
+  --font-body: 'Sohne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Söhne Breit', 'Sohne', var(--font-body);
   --radius-button: 175px;
   --input-bg: rgba(255, 255, 255, 0.3);
+  /* Figma typography */
+  --font-size-body: 27px;
+  --font-size-step-desc: 37px;
+  --font-size-logo: 74px;
+  --line-height-body: 1.296;
+  --line-height-step: 1.216;
+  --line-height-logo: 1.274;
 }
 
 * {
@@ -18,8 +24,8 @@
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 27px;
-  line-height: 1.3;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
   color: var(--color-black);
   background: var(--color-white);
 }

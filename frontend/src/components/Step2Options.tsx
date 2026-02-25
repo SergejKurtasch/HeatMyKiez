@@ -38,13 +38,24 @@ export function Step2Options({
       <p className="step-desc">Now, let's summarize the data</p>
       <p className="step-desc-secondary">And pick the retrofits</p>
 
-      <p><strong>Address:</strong> {building.street} {building.number}, {building.postal_code} Berlin</p>
-      <p><strong>Building Square Meters (m2):</strong> {building.total_area_m2 != null ? String(building.total_area_m2) : "—"}</p>
-      <p><strong>Average monthly rent/unit (Euros):</strong> {building.RentPerUnit != null ? String(building.RentPerUnit) : "—"}</p>
-      <p><strong>Window Type:</strong> {windowType || "—"}</p>
-      <p><strong>Window to Floor Square Meters Ratio:</strong> {building.WindowToFloorRatio != null ? String(building.WindowToFloorRatio) : "—"}</p>
-      <p><strong>Energy cost per month (Euros):</strong> {building.EnergyCostsPerMonth != null ? String(building.EnergyCostsPerMonth) : "—"}</p>
-      <p><strong>Number of residential units:</strong> {building.num_units != null ? String(building.num_units) : "—"}</p>
+      <div className="wizard-two-col">
+        <div className="wizard-main">
+      <div className="summary-table">
+        <span className="summary-label">Address:</span>
+        <span className="summary-value">{building.street} {building.number}, {building.postal_code} Berlin</span>
+        <span className="summary-label">Building Square Meters (m2):</span>
+        <span className="summary-value">{building.total_area_m2 != null ? String(building.total_area_m2) : "—"}</span>
+        <span className="summary-label">Average monthly rent/unit (Euros)</span>
+        <span className="summary-value">{building.RentPerUnit != null ? String(building.RentPerUnit) : "—"}</span>
+        <span className="summary-label">Window Type</span>
+        <span className="summary-value">{windowType || "—"}</span>
+        <span className="summary-label">Window to Floor Square Meters Ratio</span>
+        <span className="summary-value">{building.WindowToFloorRatio != null ? String(building.WindowToFloorRatio) : "—"}</span>
+        <span className="summary-label">Energy cost per month (Euros)</span>
+        <span className="summary-value">{building.EnergyCostsPerMonth != null ? String(building.EnergyCostsPerMonth) : "—"}</span>
+        <span className="summary-label">Number of residential units</span>
+        <span className="summary-value">{building.num_units != null ? String(building.num_units) : "—"}</span>
+      </div>
 
       {isTriple ? (
         <p className="step-desc">Unfortunately there is no improvement opportunity for windows — no additional savings.</p>
@@ -64,9 +75,10 @@ export function Step2Options({
               </div>
             ))}
           </div>
-          <p className="step-desc">*Berlin has an amazing subsidies program where you can finance up to 35% of your investment. Learn more here.</p>
+          <p className="step-desc">*Berlin has an amazing subsidies program where you can finance up to 35% of your investment.</p>
+          <p className="step-desc-secondary"><a href="#" className="subsidy-link">Learn more here</a></p>
           <button
-            className="btn btn-accent"
+            className="btn btn-primary btn-cta-large"
             disabled={!selectedOption || loading}
             onClick={onCalculateBreakEven}
           >
@@ -74,8 +86,19 @@ export function Step2Options({
           </button>
         </>
       )}
+        </div>
+        <aside className="address-card">
+          <p className="address-label">Address:</p>
+          <div className="address-values">
+            <span>{building.street}</span>
+            <span>{building.postal_code} {building.city || "Berlin"}</span>
+            <span>{building.number}</span>
+          </div>
+        </aside>
+      </div>
 
-      <div className="stepper">
+      <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
         <span className="step">1</span>
         <span className="step active">2</span>
         <span className="step">3</span>

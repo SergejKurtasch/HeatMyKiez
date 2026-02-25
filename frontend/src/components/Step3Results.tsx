@@ -1,12 +1,13 @@
-import type { CalculatorResult } from "../api/client";
+import type { Building, CalculatorResult } from "../api/client";
 import "./WizardLayout.css";
 
 interface Step3ResultsProps {
   result: CalculatorResult;
+  building?: Building | null;
   onFindContractor: () => void;
 }
 
-export function Step3Results({ result, onFindContractor }: Step3ResultsProps) {
+export function Step3Results({ result, building, onFindContractor }: Step3ResultsProps) {
   const years = result.years_until_break_even ?? Math.floor(result.YearsUntilBreakeventRentIncrease);
   const months = result.months_until_break_even ?? Math.round((result.YearsUntilBreakeventRentIncrease - years) * 12);
   const breakEvenText = years > 0 || months > 0
@@ -23,6 +24,8 @@ export function Step3Results({ result, onFindContractor }: Step3ResultsProps) {
       <p className="step-desc-secondary">We help you finance the retrofitting – so you are climate-safe for the future and your tenants stay warm.</p>
       <p className="step-desc-secondary">By slight rent increase, your investment has a return and the tenants pay less Warmmiete as they pay less energy costs.</p>
 
+      <div className="wizard-two-col">
+        <div className="wizard-main">
       <p className="break-even-big">{breakEvenText}</p>
       <p className="step-desc">Years until Break Even</p>
 
@@ -46,15 +49,28 @@ export function Step3Results({ result, onFindContractor }: Step3ResultsProps) {
         <dt>Yearly Extra Income (Euros)</dt>
         <dd>{result.YearlyExtraIncome.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
       </dl>
+        </div>
+        {building && (building.street || building.address) && (
+          <aside className="address-card">
+            <p className="address-label">Address:</p>
+            <div className="address-values">
+              <span>{building.street}</span>
+              <span>{building.postal_code} {building.city || "Berlin"}</span>
+              <span>{building.number}</span>
+            </div>
+          </aside>
+        )}
+      </div>
 
-      <div className="stepper">
+      <div className="stepper" role="progressbar" aria-valuenow={3} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
         <span className="step">1</span>
         <span className="step">2</span>
         <span className="step active">3</span>
         <span className="step">4</span>
       </div>
 
-      <button className="btn btn-accent" onClick={onFindContractor}>Find Contractor</button>
+      <button className="btn btn-primary btn-cta-large" onClick={onFindContractor}>Find Contractor</button>
     </div>
   );
 }

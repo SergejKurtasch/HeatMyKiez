@@ -46,11 +46,10 @@ export function Step1Form({ building, overrides, onChange, onNext }: Step1FormPr
       </header>
       <p className="step-desc">To understand your situation, we need some data from you.</p>
       <p className="step-desc-secondary">Now, give some basic details about the building and costs</p>
+      <p className="step-desc-secondary">Then, let's get real and dive into heating related details</p>
 
-      {building.address && (
-        <p><strong>Address:</strong> {building.street} {building.number}, {building.postal_code} {building.city || "Berlin"}</p>
-      )}
-
+      <div className="wizard-two-col">
+        <div className="wizard-main">
       <div className="form form-building">
         <div className="field">
           <label>Building Square Meters (m2)</label>
@@ -179,8 +178,21 @@ export function Step1Form({ building, overrides, onChange, onNext }: Step1FormPr
           />
         </div>
       </div>
+        </div>
+        {building.address && (
+          <aside className="address-card">
+            <p className="address-label">Address:</p>
+            <div className="address-values">
+              <span>{building.street}</span>
+              <span>{building.postal_code} {building.city || "Berlin"}</span>
+              <span>{building.number}</span>
+            </div>
+          </aside>
+        )}
+      </div>
 
-      <div className="stepper">
+      <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
+        <span className="step-connector" aria-hidden="true" />
         <span className="step">1</span>
         <span className="step active">2</span>
         <span className="step">3</span>

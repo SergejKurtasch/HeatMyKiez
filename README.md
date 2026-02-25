@@ -49,6 +49,36 @@ Open http://localhost:5173. The dev server proxies `/addresses`, `/buildings`, `
 - `POST /calculator` – body: `building_id`, `sub_type_of_retrofit`, optional `overrides`; returns payback and cost fields
 - `GET /contractors?specialization=window` – contractors for window retrofit
 
+## Deployment (free tier)
+
+You can host the app for free using [Render](https://render.com) (or frontend on [Vercel](https://vercel.com) + backend on Render).
+
+### Option A: Render (backend + frontend, recommended)
+
+1. **Backend (Web Service)**  
+   - Connect your GitHub repo.  
+   - **Build:** `pip install -r requirements.txt`  
+   - **Start:** `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`  
+   - **Root Directory:** leave empty (repo root).  
+   - **Environment:** add `PYTHONPATH=.` and `ALLOWED_ORIGINS=https://your-frontend-url.onrender.com` (use the Static Site URL from step 2).  
+   - Deploy; note the backend URL (e.g. `https://heatmykiez-api.onrender.com`).
+
+2. **Frontend (Static Site)**  
+   - New **Static Site**, same repo.  
+   - **Root Directory:** `frontend`  
+   - **Build:** `npm install && npm run build`  
+   - **Publish:** `dist`  
+   - **Environment (build-time):** `VITE_API_URL=https://heatmykiez-api.onrender.com` (your backend URL from step 1).  
+   - Deploy; note the frontend URL and set it as `ALLOWED_ORIGINS` on the backend if you didn’t yet.
+
+Free Web Services spin down after ~15 min inactivity (cold start ~1 min). Static Sites stay up and are free.
+
+### Option B: Vercel (frontend only) + Render (backend)
+
+- Deploy backend on Render as above.  
+- Deploy frontend on [Vercel](https://vercel.com): import repo, set **Root Directory** to `frontend`, add env `VITE_API_URL=https://your-backend.onrender.com`, build and deploy.  
+- Set `ALLOWED_ORIGINS` on the backend to your Vercel URL (e.g. `https://heatmykiez.vercel.app`).
+
 ## Design
 
 Colors and layout follow the Figma file (HeatMyKiez); tokens are in `frontend/src/index.css` and `frontend/src/components/WizardLayout.css`.

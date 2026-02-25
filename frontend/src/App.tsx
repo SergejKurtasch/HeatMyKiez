@@ -166,6 +166,7 @@ function App() {
     return (
       <Step3Results
         result={calculatorResult}
+        building={building ?? undefined}
         onFindContractor={handleFindContractor}
       />
     );
