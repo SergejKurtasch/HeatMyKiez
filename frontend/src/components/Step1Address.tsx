@@ -75,6 +75,19 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
         </div>
 
         <div className="form form-address">
+          <div className="field field-city">
+            <label>City</label>
+            <input type="text" value="Berlin" readOnly className="autofill" />
+          </div>
+          <div className="field field-postcode">
+            <label>Postcode</label>
+            <input
+              type="text"
+              value={postcode}
+              onChange={(e) => setPostcode(e.target.value)}
+              placeholder="e.g. 13593"
+            />
+          </div>
           <div className="field field-street">
             <label>Street</label>
             <select
@@ -87,19 +100,6 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
-          </div>
-          <div className="field field-postcode">
-            <label>Postcode</label>
-            <input
-              type="text"
-              value={postcode}
-              onChange={(e) => setPostcode(e.target.value)}
-              placeholder="e.g. 13593"
-            />
-          </div>
-          <div className="field field-city">
-            <label>City</label>
-            <input type="text" value="Berlin" readOnly className="autofill" />
           </div>
           <div className="field field-number">
             <label>Number</label>
@@ -117,15 +117,13 @@ export function Step1Address({ onAdd, loading, error }: Step1AddressProps) {
         </div>
 
         <div className="step1-address-actions">
-          <button type="button" className="btn btn-ghost" disabled>
-            Next
-          </button>
           <button
+            type="button"
             className="btn btn-primary"
             disabled={!canAdd}
             onClick={() => onAdd(postcode, address)}
           >
-            {loading ? "Loading…" : "Add"}
+            {loading ? "Loading…" : "Next"}
           </button>
         </div>
       </div>

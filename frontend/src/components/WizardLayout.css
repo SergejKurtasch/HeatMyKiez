@@ -305,29 +305,33 @@
 
 .form-address {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 70% 30%;
   column-gap: 12px;
   row-gap: 14px;
 }
 
-.field-city {
+.form-address .field-city {
+  grid-column: 1;
+}
+
+.form-address .field-postcode {
   grid-column: 2;
 }
 
-.field-number {
+.form-address .field-street {
   grid-column: 1;
+}
+
+.form-address .field-number {
+  grid-column: 2;
 }
 
 .step1-address-actions {
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: 280px 120px;
-  gap: 16px;
-  align-items: center;
 }
 
 .step1-address-actions .btn-primary {
-  width: 120px;
+  width: 280px;
   height: 56px;
   padding: 0;
 }
