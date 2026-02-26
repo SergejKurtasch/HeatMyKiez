@@ -10,6 +10,7 @@ __pycache__/
 # Node / frontend
 frontend/node_modules/
 frontend/dist/
+/package-lock.json
 
 # IDE / OS
 .idea/
@@ -19,4 +20,5 @@ frontend/dist/
 
 # Cursor
 .cursor/
+cursor_scripts/
 temp/
