@@ -618,6 +618,10 @@
   font-weight: 600;
 }
 
+.step4-contractors .stepper {
+  margin-bottom: 24px;
+}
+
 .contractor-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(260px, 1fr));

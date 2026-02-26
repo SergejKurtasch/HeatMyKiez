@@ -2,7 +2,6 @@
 Load and cache Excel data from data/mock_data_combo.xlsx.
 Uses same sheet and column names as plan (buildings, financials, energy_consumption, retrofits, parameters, contractors).
 """
-import os
 from pathlib import Path
 
 import pandas as pd

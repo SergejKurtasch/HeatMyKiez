@@ -51,7 +51,6 @@ export function Step1Form({ building, overrides, onChange, onNext, onBack }: Ste
         </button>
       </header>
       <div className="step1-form-copy">
-        <p className="step-desc">To understand your situation, we need some data from you.</p>
         <p className="step-desc-secondary">Now, give some basic details about the building and costs</p>
         <p className="step-desc-secondary">Then, let's get real and dive into heating related details</p>
         <div className="stepper" role="progressbar" aria-valuenow={2} aria-valuemin={1} aria-valuemax={4}>
