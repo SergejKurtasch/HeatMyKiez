@@ -1,4 +1,5 @@
 import type { Building, CalculatorResult } from "../api/client";
+import { formatEuro } from "../utils/format";
 import "./WizardLayout.css";
 
 interface Step3ResultsProps {
@@ -52,7 +53,7 @@ export function Step3Results({ result, building, onFindContractor, onBack }: Ste
                 <dt>Type of Retrofit</dt>
                 <dd>{result.SubTypeOfRetrofit}</dd>
                 <dt>Baseline Costs (Euros)</dt>
-                <dd>{result.RetrofitCostTotal.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.RetrofitCostTotal)}</dd>
               </dl>
             </div>
             <div className="step3-col step3-col-address">
@@ -62,7 +63,7 @@ export function Step3Results({ result, building, onFindContractor, onBack }: Ste
                 <dt>Energy Savings</dt>
                 <dd>{result.EnergySavingsPct}%</dd>
                 <dt>Cost with applicable subsidies</dt>
-                <dd>{result.RetrofitCostTotalAfterSubsidy.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.RetrofitCostTotalAfterSubsidy)}</dd>
               </dl>
             </div>
           </div>
@@ -82,17 +83,17 @@ export function Step3Results({ result, building, onFindContractor, onBack }: Ste
             <div className="step3-col">
               <dl className="step3-dl">
                 <dt>Average monthly rent/unit (Euros)</dt>
-                <dd>{result.RentPerUnit.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.RentPerUnit)}</dd>
                 <dt>Suggested Rent Increase (Euros)</dt>
-                <dd>{result.RentIncreasePerUnit.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.RentIncreasePerUnit)}</dd>
                 <dt>Tenant Savings per Unit (Euros)</dt>
-                <dd>{result.TenantSavingsPerUnit.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.TenantSavingsPerUnit)}</dd>
               </dl>
             </div>
             <div className="step3-col">
               <dl className="step3-dl">
                 <dt>Energy Saving per Unit (Euros)</dt>
-                <dd>{result.SavingsPerUnit.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+                <dd>{formatEuro(result.SavingsPerUnit)}</dd>
               </dl>
             </div>
           </div>
@@ -103,7 +104,7 @@ export function Step3Results({ result, building, onFindContractor, onBack }: Ste
         <section className="step3-block step3-block-break-even">
           <dl className="step3-dl">
             <dt>Yearly Extra Income (Euros)</dt>
-            <dd>{result.YearlyExtraIncome.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</dd>
+            <dd>{formatEuro(result.YearlyExtraIncome)}</dd>
           </dl>
           <div className="step3-break-even-row">
             <span className="step3-break-even-label">Years until Break Even</span>

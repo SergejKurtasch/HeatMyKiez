@@ -12,14 +12,6 @@ from backend.services.excel_loader import get_buildings
 router = APIRouter()
 
 
-def _to_native(v: Any) -> Any:
-    if hasattr(v, "item"):
-        return v.item()
-    if isinstance(v, (float, int)) and (v != v or v == float("inf")):  # nan or inf
-        return None
-    return v
-
-
 def _row_to_building(row) -> Dict[str, Any]:
     d = row.to_dict() if hasattr(row, "to_dict") else dict(row)
     out = {}
@@ -38,6 +30,21 @@ def _row_to_building(row) -> Dict[str, Any]:
     if "city" not in out and "district" in out:
         out["city"] = "Berlin"
     return out
+
+
+def _add_prefill(building: Dict[str, Any], building_id: str) -> Dict[str, Any]:
+    """Add facade_sqm_suggestion, RentPerUnit, EnergyCostsPerMonth from calculator."""
+    suggestion = get_facade_sqm_suggestion(building_id)
+    if suggestion is not None:
+        building["facade_sqm_suggestion"] = suggestion
+    try:
+        calc = run_calculator(building_id, "Window replacement - triple glazing", {})
+        if "error" not in calc:
+            building["RentPerUnit"] = calc.get("RentPerUnit")
+            building["EnergyCostsPerMonth"] = calc.get("EnergyCostsPerMonth")
+    except Exception:
+        pass
+    return building
 
 
 @router.get("/search")
@@ -61,17 +68,7 @@ def search_building(
     building = _row_to_building(row)
     building_id = building.get("building_id")
     if building_id:
-        suggestion = get_facade_sqm_suggestion(str(building_id))
-        if suggestion is not None:
-            building["facade_sqm_suggestion"] = suggestion
-        sub_type = "Window replacement - triple glazing"
-        try:
-            calc = run_calculator(str(building_id), sub_type, {})
-            if "error" not in calc:
-                building["RentPerUnit"] = calc.get("RentPerUnit")
-                building["EnergyCostsPerMonth"] = calc.get("EnergyCostsPerMonth")
-        except Exception:
-            pass
+        building = _add_prefill(building, str(building_id))
     return building
 
 
@@ -85,14 +82,5 @@ def get_building(building_id: str) -> dict:
     if match.empty:
         raise HTTPException(status_code=404, detail="Building not found")
     building = _row_to_building(match.iloc[0])
-    suggestion = get_facade_sqm_suggestion(str(building_id))
-    if suggestion is not None:
-        building["facade_sqm_suggestion"] = suggestion
-    try:
-        calc = run_calculator(str(building_id), "Window replacement - triple glazing", {})
-        if "error" not in calc:
-            building["RentPerUnit"] = calc.get("RentPerUnit")
-            building["EnergyCostsPerMonth"] = calc.get("EnergyCostsPerMonth")
-    except Exception:
-        pass
+    building = _add_prefill(building, str(building_id))
     return building

@@ -4,6 +4,7 @@ Uses buildings, financials, energy_consumption, retrofits, parameters.
 Returns same field names as plan: RetrofitCostTotal, RetrofitCostTotalAfterSubsidy,
 YearsUntilBreakeventRentIncrease, etc.
 """
+import math
 from typing import Any, Dict, Optional
 
 import pandas as pd
@@ -226,7 +227,6 @@ def get_facade_sqm_suggestion(building_id: str) -> Optional[float]:
     bt = building.get("building_type", "Modern")
     interior = INTERIOR_HEIGHT_BY_BUILDING_TYPE.get(str(bt), 2.8)
     floor_height_m = interior + INTER_FLOOR_SLAB_M
-    import math
     side = math.sqrt(total_area_m2 / num_floors) if total_area_m2 > 0 and num_floors > 0 else 0
     if side <= 0:
         return None

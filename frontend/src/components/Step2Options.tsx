@@ -1,4 +1,5 @@
 import type { Building } from "../api/client";
+import { formatEuro } from "../utils/format";
 import "./WizardLayout.css";
 
 interface OptionCard {
@@ -96,8 +97,8 @@ export function Step2Options({
                 </label>
                 <h3>{opt.label}</h3>
                 <p><strong>Energy Savings:</strong> {opt.savingsPct}%</p>
-                <p><strong>Baseline Cost (Euros):</strong> {opt.RetrofitCostTotal.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
-                <p><strong>Cost with applicable subsidies:</strong> {opt.RetrofitCostTotalAfterSubsidy.toLocaleString("de-DE", { minimumFractionDigits: 2 })}</p>
+                <p><strong>Baseline Cost (Euros):</strong> {formatEuro(opt.RetrofitCostTotal)}</p>
+                <p><strong>Cost with applicable subsidies:</strong> {formatEuro(opt.RetrofitCostTotalAfterSubsidy)}</p>
               </div>
             ))}
           </div>

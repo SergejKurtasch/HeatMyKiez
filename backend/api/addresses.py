@@ -1,8 +1,6 @@
 """
 Address cascading: streets by postcode, numbers by postcode+street.
 """
-from typing import List
-
 from fastapi import APIRouter, Query
 
 from backend.services.address_parser import (
