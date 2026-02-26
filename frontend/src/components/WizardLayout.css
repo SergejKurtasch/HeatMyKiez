@@ -373,7 +373,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: -86px;
 }
 
 .backend-connection-status {
@@ -766,10 +765,6 @@
   .step1-address-layout {
     grid-template-columns: 1fr;
     row-gap: 32px;
-  }
-
-  .step1-address-form-col {
-    margin-top: 0;
   }
 
   .form-address {

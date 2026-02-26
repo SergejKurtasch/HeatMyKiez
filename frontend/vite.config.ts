@@ -11,5 +11,11 @@ export default defineConfig({
       "/contractors": { target: "http://localhost:8000", changeOrigin: true },
       "/health": { target: "http://localhost:8000", changeOrigin: true },
     },
+    warmup: {
+      clientFiles: ["./src/main.tsx", "./src/App.tsx"],
+    },
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
   },
 });
