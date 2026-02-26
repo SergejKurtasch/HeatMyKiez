@@ -378,6 +378,13 @@
   padding: 0;
 }
 
+.mock-data-disclaimer {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #6b7280);
+  max-width: 320px;
+}
+
 .step1-form-copy {
   display: grid;
   row-gap: 24px;
