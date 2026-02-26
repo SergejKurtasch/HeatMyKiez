@@ -167,7 +167,7 @@ export function Step1Address({ onAdd, loading, error, backendStatus = "pending" 
             {loading ? "Loading…" : "Next"}
           </button>
           <p className="mock-data-disclaimer">
-            This demo uses test data only. Addresses and results are not from real databases.
+            <span className="mock-data-disclaimer-attention">Attention:</span> This demo uses test data only. Addresses and results are not from real databases.
           </p>
         </div>
       </div>
