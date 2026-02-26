@@ -20,6 +20,7 @@ async function post<T>(path: string, body: unknown): Promise<T> {
 }
 
 export const api = {
+  health: () => get<{ status: string }>("/health"),
   getStreets: (postcode: string) => get<{ postcode: string; streets: string[] }>(`/addresses/streets?postcode=${encodeURIComponent(postcode)}`),
   getNumbers: (postcode: string, street: string) =>
     get<{ postcode: string; street: string; numbers: string[] }>(`/addresses/numbers?postcode=${encodeURIComponent(postcode)}&street=${encodeURIComponent(street)}`),

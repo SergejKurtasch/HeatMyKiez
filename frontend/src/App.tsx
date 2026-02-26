@@ -28,6 +28,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [contractorsLoading, setContractorsLoading] = useState(false);
+  const [backendStatus, setBackendStatus] = useState<"pending" | "ready" | "error">("pending");
+
+  useEffect(() => {
+    api.health().then(() => setBackendStatus("ready")).catch(() => setBackendStatus("error"));
+  }, []);
 
   const buildOverridesForApi = useCallback(() => {
     const o: Record<string, unknown> = {};
@@ -134,6 +139,7 @@ function App() {
         onAdd={handleAddAddress}
         loading={loading}
         error={error ?? undefined}
+        backendStatus={backendStatus}
       />
     );
   }

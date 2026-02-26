@@ -88,7 +88,8 @@
 }
 
 .stepper {
-  width: 300px;
+  width: fit-content;
+  max-width: 100%;
   height: 96px;
   display: flex;
   align-items: center;
@@ -122,22 +123,22 @@
   line-height: 0.584;
 }
 
-/* Line from center of circle 1 to center of circle 4, never beyond */
+/* Line from center of circle 1 to center of circle 4; pixel positions so it never extends beyond circles when stepper width varies */
 .stepper .step-connector {
   position: absolute;
-  left: 7%;
-  right: 23%;
+  left: 21px;   /* center of 42px circle */
+  right: 21px;  /* center of last 42px circle */
   top: 50%;
   margin-top: -1px;
   border-top: 1px solid var(--color-white);
 }
 
 .stepper:has(.step:nth-child(2).active) .step-connector {
-  left: 16%;
+  left: 48px;   /* center of active 96px circle */
 }
 
 .stepper:has(.step:nth-child(5).active) .step-connector {
-  right: 32%;
+  right: 48px;  /* center of active 96px circle */
 }
 
 .btn {
@@ -366,6 +367,51 @@
 
 .form-address .field-number {
   grid-column: 2;
+}
+
+.step1-address-form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backend-connection-status {
+  margin: 0;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.backend-connection-pending {
+  margin: 0;
+  color: var(--color-black);
+}
+
+.backend-connection-ready {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0d7d0d;
+  font-weight: 500;
+}
+
+.backend-connection-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0d7d0d;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.backend-connection-error {
+  margin: 0;
+  color: #8b4513;
 }
 
 .step1-address-actions {
@@ -794,8 +840,8 @@
   }
 
   .stepper {
-    width: 100%;
-    max-width: 476px;
+    width: fit-content;
+    max-width: 100%;
   }
 
   .step3-results .step3-content {
