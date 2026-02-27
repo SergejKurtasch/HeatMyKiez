@@ -62,7 +62,7 @@
 
 .field {
   display: grid;
-  grid-template-rows: 18px 46px;
+  grid-template-rows: minmax(18px, auto) 46px;
   row-gap: 6px;
 }
 
@@ -803,6 +803,7 @@
 
   .form-building {
     grid-template-columns: 1fr 1fr;
+    align-items: end;
   }
 
   .form-building-basic,
@@ -861,5 +862,12 @@
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-building {
+    grid-template-columns: 1fr;
+    align-items: stretch;
   }
 }
