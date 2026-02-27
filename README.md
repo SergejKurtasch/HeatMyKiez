@@ -4,6 +4,14 @@ This project was built as part of participation in **Code Green: Climate Tech Ha
 
 Building retrofit payback calculator: 4-step wizard with address lookup, building form, window replacement options, break-even calculation, and contractor list. **The app runs on mock/test data only** — addresses, buildings, costs, and contractors come from `data/mock_data_combo.xlsx`, not from real databases or live APIs. UI follows the Figma design.
 
+## Try it online (no clone required)
+
+You can test the app in the browser without cloning the repository:
+
+- **Live demo:** [https://heatmykiez.onrender.com/](https://heatmykiez.onrender.com/)
+
+**Note:** The first request after a period of inactivity can take about **one minute** while the backend (Render free tier) spins up. Subsequent requests are fast until the service goes idle again.
+
 ## Stack
 
 - **Backend:** Python 3, FastAPI, pandas, openpyxl
